@@ -1,6 +1,7 @@
 # Devski
 
-Goal is to have something to that sets up `whatever.dev` for you.
+Goal is to have something to that sets up `whatever.dev` for you with https and
+subdomains.
 
 __Current status: heavy development__
 
