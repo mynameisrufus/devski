@@ -7,6 +7,20 @@ __Current status: heavy development__
 
 # Install for comrade
 
+iCheck out devski into ~/.devski
+
+```shell
+$ git clone git@github.com:mynameisrufus/devski.git ~/.devski
+```
+
+Add ~/.devski/bin to your $PATH for access to the devski command-line utility.
+
+```shell
+$ echo 'export PATH="$HOME/.devski/bin:$PATH"' >> ~/.bash_profile
+```
+
+Zsh note: Modify your `~/.zshenv` file instead of `~/.bash_profile`
+
 ```shell
 brew install nginx
 ```
@@ -24,10 +38,12 @@ cd ~/.devski
 ln -s /path/to/myapp
 ```
 
+```shell
 launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
 sudo mv launchctl ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist /Library/LaunchAgents/homebrew.mxcl.nginx.plist
 sudo chown root:admin /Library/LaunchAgents/homebrew.mxcl.nginx.plist
 sudo launchctl load -w /Library/LaunchAgents/homebrew.mxcl.nginx.plist
+```
 
 ## Reload
 

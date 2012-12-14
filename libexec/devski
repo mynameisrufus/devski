@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+command="$1"
+case "$command" in
+"" | "-h" | "--help" )
+  echo -e "$(devski---version)\n$(devski-help)" >&2
+  ;;
+"-v" )
+  exec devski---version
+  ;;
+* )
+  command_path="$(command -v "devski-$command" || true)"
+  if [ -z "$command_path" ]; then
+    echo "devski: no such command \`$command'" >&2
+    exit 1
+  fi
+
+  shift 1
+  exec "$command_path" "$@"
+  ;;
+esac

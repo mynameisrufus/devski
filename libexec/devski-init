@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 rndc-confgen > /etc/rndc.conf
 head -n5 /etc/rndc.conf |tail -n4 > /etc/rndc.key
 
