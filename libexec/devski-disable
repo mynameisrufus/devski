@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd /usr/local/etc/nginx
+
+SERVER_NAME=$1
+
+sudo rm sites-enabled/$SERVER_NAME.conf
