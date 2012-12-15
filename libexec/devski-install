@@ -48,5 +48,33 @@ cp dev.key dev.key.org
 openssl rsa -in dev.key.org -out dev.key
 openssl x509 -req -days 365 -in dev.csr -signkey dev.key -out dev.crt
 
-launchctl load -w /System/Library/LaunchDaemons/org.isc.named.plist
-named
+# remove homebrew launchctl plist
+launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+rm ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+
+read -r -d '' NGINX_PLIST <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>devksi.mynameisrufus.nginx</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <false/>
+    <key>UserName</key>
+    <string>root</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/opt/nginx/sbin/nginx</string>
+        <string>-g</string>
+        <string>daemon off;</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/usr/local</string>
+  </dict>
+</plist>
+EOF
+
+sudo echo "$NGINX_PLIST" > /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
