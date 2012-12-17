@@ -35,7 +35,8 @@ EOF
 
 echo "$ZONE_CONF" > /var/named/dev.zone
 
-echo "nameserver 127.0.0.1" > "/etc/resolver/dev"
+# This is not running, getting permission denied. Anoying.
+sudo echo "nameserver 127.0.0.1" > "/etc/resolver/dev"
 
 mkdir /usr/local/etc/nginx/{sites-available,sites-enabled,certs}
 

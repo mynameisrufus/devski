@@ -87,3 +87,7 @@ start app and tail log ctr+c to stop:
 $ devski
 
 ```
+
+# HTML
+
+is here `/usr/local/Cellar/nginx/1.2.5/html`
