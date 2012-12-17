@@ -1,5 +1,56 @@
 #!/usr/bin/env bash
 
+set -e
+[ -n "$DEVSKI_DEBUG" ] && set -x
+
+resolve_link() {
+  $(type -p greadlink readlink | head -1) "$1"
+}
+
+abs_dirname() {
+  local cwd="$(pwd)"
+  local path="$1"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}"
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
+if [ -z "${DEVSKI_ROOT}" ]; then
+  DEVSKI_ROOT="${HOME}/.devski"
+else
+  DEVSKI_ROOT="${DEVSKI_ROOT%/}"
+fi
+export DEVSKI_ROOT
+
+if [ -z "${DEVSKI_DIR}" ]; then
+  DEVSKI_DIR="$(pwd)"
+else
+  cd "$DEVSKI_DIR" 2>/dev/null || {
+    echo "devski: cannot change working directory to \`$DEVSKI_DIR'"
+    exit 1
+  } >&2
+  DEVSKI_DIR="$(pwd)"
+  cd "$OLDPWD"
+fi
+export DEVSKI_DIR
+
+
+shopt -s nullglob
+
+bin_path="$(abs_dirname "$0")"
+for plugin_bin in "${DEVSKI_ROOT}/plugins/"*/bin; do
+  bin_path="${bin_path}:${plugin_bin}"
+done
+export PATH="${bin_path}:${PATH}"
+
+shopt -u nullglob
+
 command="$1"
 case "$command" in
 "" | "-h" | "--help" )

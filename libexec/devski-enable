@@ -4,5 +4,5 @@ SERVER_NAME=$1
 
 sudo ln -s /usr/local/etc/nginx/sites-available/$SERVER_NAME.conf /usr/local/etc/nginx/sites-enabled/$SERVER_NAME.conf
 
-# We need to invoke devski-reload here. Getting nginx to test the confs would be
-# ideal?
+sudo launchctl stop devksi.mynameisrufus.nginx
+sudo launchctl start devksi.mynameisrufus.nginx

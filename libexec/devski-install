@@ -40,8 +40,7 @@ sudo echo "nameserver 127.0.0.1" > "/etc/resolver/dev"
 
 mkdir /usr/local/etc/nginx/{sites-available,sites-enabled,certs}
 
-# https 
-
+# http://wiki.nginx.org/HttpSslModule
 cd /usr/local/etc/nginx/certs
 openssl genrsa -des3 -out dev.key 1024
 openssl req -new -key dev.key -out dev.csr

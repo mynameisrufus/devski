@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-cd /usr/local/etc/nginx
-
 SERVER_NAME=$1
 
-sudo rm sites-enabled/$SERVER_NAME.conf
+sudo rm /usr/local/etc/nginx/sites-enabled/$SERVER_NAME.conf
+
+sudo launchctl stop devksi.mynameisrufus.nginx
+sudo launchctl start devksi.mynameisrufus.nginx
