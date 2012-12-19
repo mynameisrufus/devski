@@ -6,23 +6,31 @@ __Current status: heavy development__
 
 # Install
 
+Install Nginx
+
 ```shell
 brew install nginx
 ```
 
-iCheck out devski into ~/.devski
+Check out devski into ~/.devski
 
 ```shell
-$ git clone git@github.com:mynameisrufus/devski.git ~/.devski
+git clone git@github.com:mynameisrufus/devski.git ~/.devski
 ```
 
 Add ~/.devski/bin to your $PATH for access to the devski command-line utility.
 
 ```shell
-$ echo 'export PATH="$HOME/.devski/bin:$PATH"' >> ~/.bash_profile
+echo 'export PATH="$HOME/.devski/bin:$PATH"' >> ~/.bash_profile
 ```
 
 Zsh note: Modify your `~/.zshenv` file instead of `~/.bash_profile`
+
+Profit
+
+```shell
+devski
+```
 
 ## Debugging
 

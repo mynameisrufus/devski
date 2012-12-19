@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 
+FILE="/tmp/out.$$"
+GREP="/bin/grep"
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This command must be run as root" 1>&2
+   exit 1
+fi
+
 SERVER_NAME=$1
 
-sudo ln -s /usr/local/etc/nginx/sites-available/$SERVER_NAME.conf /usr/local/etc/nginx/sites-enabled/$SERVER_NAME.conf
+ln -s /usr/local/etc/nginx/sites-available/$SERVER_NAME.conf /usr/local/etc/nginx/sites-enabled/$SERVER_NAME.conf
 
-sudo launchctl stop devksi.mynameisrufus.nginx
-sudo launchctl start devksi.mynameisrufus.nginx
+launchctl stop devksi.mynameisrufus.nginx
+launchctl start devksi.mynameisrufus.nginx

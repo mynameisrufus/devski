@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+FILE="/tmp/out.$$"
+GREP="/bin/grep"
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This command must be run as root" 1>&2
+   exit 1
+fi
+
 rndc-confgen > /etc/rndc.conf
 head -n5 /etc/rndc.conf |tail -n4 > /etc/rndc.key
 
@@ -12,9 +20,9 @@ zone "dev" IN {
 };
 
 EOF
-if [ "`grep dev.zone /etc/named.conf`" == "" ]
-then
-echo "$NAMED_CONF" >> /etc/named.conf
+
+if [ "`grep dev.zone /etc/named.conf`" == "" ]; then
+  echo "$NAMED_CONF" >> /etc/named.conf
 fi
 
 read -r -d '' ZONE_CONF <<'EOF'
@@ -35,11 +43,11 @@ EOF
 
 echo "$ZONE_CONF" > /var/named/dev.zone
 
-# This is not running, getting permission denied. Anoying.
-sudo echo "nameserver 127.0.0.1" > "/etc/resolver/dev"
+echo "nameserver 127.0.0.1" > "/etc/resolver/dev"
 
-mkdir /usr/local/etc/nginx/{sites-available,sites-enabled,certs}
+mkdir -v /usr/local/etc/nginx/{sites-available,sites-enabled,certs}
 
+# Generate SSL certs for https.
 # http://wiki.nginx.org/HttpSslModule
 cd /usr/local/etc/nginx/certs
 openssl genrsa -des3 -out dev.key 1024
@@ -48,9 +56,9 @@ cp dev.key dev.key.org
 openssl rsa -in dev.key.org -out dev.key
 openssl x509 -req -days 365 -in dev.csr -signkey dev.key -out dev.crt
 
-# remove homebrew launchctl plist
-launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
-rm ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+# Move Homebrew plist file so it can be resotred in future (forced).
+launchctl unload -Fw ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
+mv ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist.old
 
 read -r -d '' NGINX_PLIST <<'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -77,4 +85,9 @@ read -r -d '' NGINX_PLIST <<'EOF'
 </plist>
 EOF
 
-sudo echo "$NGINX_PLIST" > /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
+# Add Devski plist to LaunchDaemons so nginx starts as a system process.
+echo "$NGINX_PLIST" > /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
+
+# Load nginx and start
+launchctl load -w /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
+sudo launchctl start devksi.mynameisrufus.nginx

@@ -5,6 +5,7 @@ case "$1" in
 
 Some useful devski commands are:
    commands      List all devski commands
+   install       Configure your machine
    enable        Enable a vhost
    disable       Disable a vhost
    remove        Remove a vhost configuration
@@ -14,6 +15,11 @@ Some useful devski commands are:
    disabled      List disabled vhosts
 
 See 'devski help <command>' for information on a specific command."
+;;
+install) echo "usage: devski install
+
+Configures bind and nginx for use on port 80 with the \`.dev' domain and
+generates the ssl certificate."
 ;;
 enable) echo "usage: devski enable <name>
 

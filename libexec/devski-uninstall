@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+FILE="/tmp/out.$$"
+GREP="/bin/grep"
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This command must be run as root" 1>&2
+   exit 1
+fi
+
+rm /etc/rndc.conf
+rm /etc/rndc.key
+
+# TODO remove "dev" zone from /etc/named.conf
+
+rm /var/named/dev.zone
+
+rm /usr/local/etc/nginx/certs/dev.*
+
+# Remove Devski plist
+launchctl unload -w /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
+rm /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
+
+# Restore homebrew plist
+mv ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist.old ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
