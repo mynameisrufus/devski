@@ -45,7 +45,9 @@ EOF
 
 echo "$ZONE_CONF" > /var/named/dev.zone
 
+mkdir /etc/resolver
 echo "nameserver 127.0.0.1" > "/etc/resolver/dev"
+echo "domain ." >> "/etc/resolver/dev"
 
 mkdir -v /usr/local/etc/nginx/{sites-available,sites-enabled,certs}
 
