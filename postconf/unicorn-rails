@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+read -r -d '' POST_CONF <<EOF
+In rails root run:
+  unicorn_rails -E development -l unix:/tmp/unicorn.sock
+EOF
+
+echo "$POST_CONF"

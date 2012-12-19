@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+read -r -d '' POST_CONF <<EOF
+In rails root run:
+  bundle exec thin start --socket tmp/sockets/thin.sock
+EOF
+
+echo "$POST_CONF"

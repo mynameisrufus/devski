@@ -13,8 +13,7 @@ Some useful devski commands are:
    enabled       List enabled vhosts
    disabled      List disabled vhosts
 
-See 'devski help <command>' for information on a specific command.
-For full documentation, see: https://github.com/sstephenson/devski#readme"
+See 'devski help <command>' for information on a specific command."
 ;;
 enable) echo "usage: devski enable <name>
 

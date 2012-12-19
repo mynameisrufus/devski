@@ -1,1 +1,26 @@
 #!/usr/bin/env bash
+
+DEVSKI_ROOT="${HOME}/.devski"
+TEMPLATE_PATH="${DEVSKI_ROOT}/vhosts"
+POSTCONF_PATH="${DEVSKI_ROOT}/postconf"
+
+CURRENT=`pwd`
+BASENAME=`basename $CURRENT`
+TEMPLATE_NAME=$2
+SERVER_NAME=$1
+
+if [ $3 ]; then APP_PATH=$3; else APP_PATH=$CURRENT; fi
+
+SERVER_CONF=`${TEMPLATE_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${APP_PATH%/}`
+POSTCONF=`${POSTCONF_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${APP_PATH%/}`
+
+SERVER_CONF_FILE="/usr/local/etc/nginx/sites-available/$SERVER_NAME.conf"
+echo "echo \"$SERVER_CONF\" > \"$SERVER_CONF_FILE\"" | sudo sh
+
+echo ""
+echo "To enable $SERVER_NAME run:"
+echo "  devski enable $SERVER_NAME"
+echo ""
+
+echo "$POSTCONF"
+echo ""

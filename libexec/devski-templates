@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+DEVSKI_ROOT="${HOME}/.devski"
+TEMPLATE_PATH="${DEVSKI_ROOT}/vhosts"
+
+{ for path in ${TEMPLATE_PATH//:/$'\n'}; do
+    for command in "${path}/"*; do
+      command="${command##*vhosts/}"
+      echo ${command##sh-}
+    done
+  done
+} | sort | uniq
