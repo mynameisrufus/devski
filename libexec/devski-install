@@ -8,6 +8,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+DEVSKI_ROOT="${HOME}/.devski"
+
 rndc-confgen > /etc/rndc.conf
 head -n5 /etc/rndc.conf |tail -n4 > /etc/rndc.key
 
@@ -55,6 +57,10 @@ openssl req -new -key dev.key -out dev.csr
 cp dev.key dev.key.org
 openssl rsa -in dev.key.org -out dev.key
 openssl x509 -req -days 365 -in dev.csr -signkey dev.key -out dev.crt
+
+# Symlink nginx.conf
+mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf.old
+ln -s $DEVSKI_ROOT/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
 
 # Move Homebrew plist file so it can be resotred in future (forced).
 launchctl unload -Fw ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist

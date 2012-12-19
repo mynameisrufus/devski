@@ -17,6 +17,10 @@ rm /var/named/dev.zone
 
 rm /usr/local/etc/nginx/certs/dev.*
 
+# Restore old nginx.conf
+rm /usr/local/etc/nginx/nginx.conf
+mv /usr/local/etc/nginx/nginx.conf.old /usr/local/etc/nginx/nginx.conf
+
 # Remove Devski plist
 launchctl unload -w /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
 rm /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
