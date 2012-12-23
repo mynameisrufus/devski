@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+ENABLED_PATH=/usr/local/etc/nginx/sites-available
+
+{ for path in ${ENABLED_PATH//:/$'\n'}; do
+    for vhost in "${path}/"*; do
+      vhost="${vhost##*sites-available/}"
+      echo ${vhost##sh-}
+    done
+  done
+} | sort | uniq

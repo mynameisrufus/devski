@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sudo launchctl stop devksi.mynameisrufus.nginx

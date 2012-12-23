@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+SERVER_NAME=$1
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This command must be run as root" 1>&2
+   exit 1
+fi
+
+SERVER_CONF_FILE="/usr/local/etc/nginx/sites-available/$SERVER_NAME.conf"
+
+vi $SERVER_CONF_FILE

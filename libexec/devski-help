@@ -12,7 +12,7 @@ Some useful devski commands are:
    add           Add a new vhost configuration
    templates     List vhost templates
    enabled       List enabled vhosts
-   disabled      List disabled vhosts
+   available     List available vhosts
 
 See 'devski help <command>' for information on a specific command."
 ;;
