@@ -22,7 +22,7 @@ if [ $3 ]; then APP_PATH=$3; else APP_PATH=$CURRENT; fi
 SERVER_CONF=`${TEMPLATE_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${APP_PATH%/}`
 POSTCONF=`${POSTCONF_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${APP_PATH%/}`
 
-SERVER_CONF_FILE="/usr/local/etc/nginx/sites-available/$SERVER_NAME.conf"
+SERVER_CONF_FILE="$DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf"
 echo "$SERVER_CONF" > "$SERVER_CONF_FILE"
 
 echo ""

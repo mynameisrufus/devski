@@ -15,7 +15,11 @@ rm /etc/rndc.key
 
 rm /var/named/dev.zone
 
-rm /usr/local/etc/nginx/certs/dev.*
+# Remove the symlinked dirs
+rm /usr/local/etc/nginx/certs
+rm /usr/local/etc/nginx/sites-available
+rm /usr/local/etc/nginx/sites-enabled
+rm /usr/local/etc/nginx/user.conf
 
 # Restore old nginx.conf
 rm /usr/local/etc/nginx/nginx.conf
