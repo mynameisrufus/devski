@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+if [ $# -lt 2 ]; then
+    echo "Not enough arguments supplied"
+    echo "See:"
+    echo "  devski help add"
+    exit 1
+fi
+
 FILE="/tmp/out.$$"
 GREP="/bin/grep"
 
