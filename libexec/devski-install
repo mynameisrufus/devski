@@ -9,7 +9,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 DEVSKI_ROOT="${HOME}/.devski"
-NGINX_ROOT="/usr/local/etc/nginx/certs"
+NGINX_ROOT="/usr/local/etc/nginx/"
 
 rndc-confgen > /etc/rndc.conf
 head -n5 /etc/rndc.conf |tail -n4 > /etc/rndc.key
