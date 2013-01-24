@@ -10,11 +10,6 @@ fi
 FILE="/tmp/out.$$"
 GREP="/bin/grep"
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This command must be run as root" 1>&2
-   exit 1
-fi
-
 DEVSKI_ROOT="${HOME}/.devski"
 TEMPLATE_PATH="${DEVSKI_ROOT}/vhosts"
 POSTCONF_PATH="${DEVSKI_ROOT}/postconf"
