@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+read -r -d '' POST_CONF <<EOF
+Nothing todo
+EOF
+
+echo "$POST_CONF"
