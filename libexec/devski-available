@@ -5,7 +5,7 @@ ENABLED_PATH=/usr/local/etc/nginx/sites-available
 { for path in ${ENABLED_PATH//:/$'\n'}; do
     for vhost in "${path}/"*; do
       vhost="${vhost##*sites-available/}"
-      echo $vhost | sed 's/\(.*\)\.conf$/- \1/'
+      echo ${vhost%.conf}
     done
   done
 } | sort | uniq
