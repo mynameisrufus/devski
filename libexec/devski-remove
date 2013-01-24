@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
+if [ $# -lt 1 ]; then
+    echo "Not enough arguments supplied"
+    echo "See:"
+    echo "  devski help remove (or not)"
+    exit 1
+fi
+
 DEVSKI_ROOT="${HOME}/.devski"
+
+SERVER_NAME=$1
 
 rm $DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf
 rm $DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf
