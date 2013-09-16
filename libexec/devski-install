@@ -9,49 +9,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 DEVSKI_ROOT="${HOME}/.devski"
-NGINX_ROOT="/usr/local/etc/nginx/"
-
-rndc-confgen > /etc/rndc.conf
-head -n5 /etc/rndc.conf |tail -n4 > /etc/rndc.key
-
-read -r -d '' NAMED_CONF <<'EOF'
-
-zone "dev" IN {
-  type master;
-  file "dev.zone";
-  allow-update { none; };
-};
-
-EOF
-
-if [ "`grep dev.zone /etc/named.conf`" == "" ]; then
-  echo "$NAMED_CONF" >> /etc/named.conf
-fi
-
-read -r -d '' ZONE_CONF <<'EOF'
-$TTL  60
-$ORIGIN dev.
-@      1D IN SOA localhost. root.localhost. (
-          42   ; serial (d. adams)
-          3H   ; refresh
-          15M    ; retry
-          1W   ; expiry
-          1D )   ; minimum
-
-      1D IN NS localhost
-      1D IN A    127.0.0.1
-localhost.dev. 60 IN A 127.0.0.1
-*.dev. 60 IN A 127.0.0.1
-EOF
-
-echo "$ZONE_CONF" > /var/named/dev.zone
-
-mkdir /etc/resolver
-echo "nameserver 127.0.0.1" > "/etc/resolver/dev"
-
-echo "user  `id -un` `id -gn`;" > $DEVSKI_ROOT/nginx/user.conf
-
-ln -s $DEVSKI_ROOT/nginx/user.conf /usr/local/etc/nginx/user.conf
+NGINX_ROOT="/opt/boxen/config/nginx/"
 
 # Generate SSL certs for https.
 # http://wiki.nginx.org/HttpSslModule
@@ -72,39 +30,3 @@ ln -s $DEVSKI_ROOT/nginx/sites-enabled $NGINX_ROOT/sites-enabled
 mv $NGINX_ROOT/nginx.conf $NGINX_ROOT/nginx.conf.old
 
 ln -s $DEVSKI_ROOT/nginx/nginx.conf $NGINX_ROOT/nginx.conf
-
-# Move Homebrew plist file so it can be resotred in future (forced).
-launchctl unload -Fw ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
-mv ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist.old
-
-read -r -d '' NGINX_PLIST <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <dict>
-    <key>Label</key>
-    <string>devksi.mynameisrufus.nginx</string>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>KeepAlive</key>
-    <false/>
-    <key>UserName</key>
-    <string>root</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/usr/local/opt/nginx/sbin/nginx</string>
-        <string>-g</string>
-        <string>daemon off;</string>
-    </array>
-    <key>WorkingDirectory</key>
-    <string>/usr/local</string>
-  </dict>
-</plist>
-EOF
-
-# Add Devski plist to LaunchDaemons so nginx starts as a system process.
-echo "$NGINX_PLIST" > /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
-
-# Load nginx and start
-launchctl load -w /Library/LaunchDaemons/devksi.mynameisrufus.nginx.plist
-launchctl start devksi.mynameisrufus.nginx

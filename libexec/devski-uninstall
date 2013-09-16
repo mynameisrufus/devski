@@ -8,12 +8,12 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-rm /etc/rndc.conf
-rm /etc/rndc.key
+# Remove dnsmasq
+launchctl unload -w /Library/LaunchDaemons/ipalias.plist
+launchctl unload -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 
-# TODO remove "dev" zone from /etc/named.conf
-
-rm /var/named/dev.zone
+rm /Library/LaunchDaemons/ipalias.plist
+rm /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
 
 # Remove the symlinked dirs
 rm /usr/local/etc/nginx/certs

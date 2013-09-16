@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-sudo launchctl stop devksi.mynameisrufus.nginx
-sudo launchctl start devksi.mynameisrufus.nginx
+sudo launchctl stop dev.nginx
+sudo launchctl start dev.nginx

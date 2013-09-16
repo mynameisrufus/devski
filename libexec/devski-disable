@@ -4,5 +4,5 @@ DEVSKI_ROOT="${HOME}/.devski"
 
 rm $DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf
 
-sudo launchctl stop devksi.mynameisrufus.nginx
-sudo launchctl start devksi.mynameisrufus.nginx
+sudo launchctl stop dev.nginx
+sudo launchctl start dev.nginx

@@ -35,11 +35,7 @@ to your server of choice.
 
 # Install
 
-Install Nginx
-
-```shell
-brew install nginx
-```
+Using boxen make sure you have dnsmasq and nginx running.
 
 Check out devski into ~/.devski
 
@@ -58,7 +54,7 @@ Zsh note: Modify your `~/.zshenv` file instead of `~/.bash_profile`
 Run:
 
 ```shell
-devski
+devski install
 ```
 
 ## Debugging
