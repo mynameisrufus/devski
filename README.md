@@ -51,11 +51,15 @@ echo 'export PATH="$HOME/.devski/bin:$PATH"' >> ~/.bash_profile
 
 Zsh note: Modify your `~/.zshenv` file instead of `~/.bash_profile`
 
-Run:
+Symlink your sites dir to your devski enabled dir
 
 ```shell
-devski install
+rm -rf /opt/boxen/config/nginx/sites
+ln -s ~/.devski/nginx/sites-enabled /opt/boxen/config/nginx/sites
 ```
+
+Each time you run boxen you symlink will go missing so you will have to do this
+again.
 
 ## Debugging
 
