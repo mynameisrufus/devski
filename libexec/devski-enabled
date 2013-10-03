@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-ENABLED_PATH=/usr/local/etc/nginx/sites-enabled
+DEVSKI_ROOT="${HOME}/.devski"
+ENABLED_PATH="${DEVSKI_ROOT}/nginx/sites-enabled"
 
 { for path in ${ENABLED_PATH//:/$'\n'}; do
     for vhost in "${path}/"*; do
