@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+read -r -d '' POST_CONF <<EOF
+In project root:
+  node pkg/bin/server.js
+EOF
+
+echo "$POST_CONF"
