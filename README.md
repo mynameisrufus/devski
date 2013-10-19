@@ -67,7 +67,7 @@ again.
 nginx:
 
 ``` 
-tail -f /tmp/nginx.error.log
+tail -f /opt/boxen/log/nginx/*.log
 ```
 
 ## Credits
