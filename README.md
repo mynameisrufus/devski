@@ -34,7 +34,7 @@ uninstall
 ❯
 ```
 
-# Install
+### Install
 
 Using boxen make sure you have dnsmasq and nginx running.
 
@@ -61,7 +61,7 @@ ln -s ~/.devski/nginx/sites-enabled /opt/boxen/config/nginx/sites
 Each time you run boxen you symlink will go missing so you will have to do this
 again.
 
-## Debugging
+### Debugging
 
 nginx:
 
