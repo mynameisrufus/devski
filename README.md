@@ -51,7 +51,8 @@ echo 'export PATH="$HOME/.devski/bin:$PATH"' >> ~/.bash_profile
 
 Zsh note: Modify your `~/.zshenv` file instead of `~/.bash_profile`
 
-Symlink your sites dir to your devski enabled dir
+Symlink your sites dir to your devski enabled dir with `devski link` this is
+equivalent to:
 
 ```shell
 rm -rf /opt/boxen/config/nginx/sites

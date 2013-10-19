@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+BOXEN_NGINX_SITES="/opt/boxen/config/nginx/sites"
+DEVSKI_ROOT="${HOME}/.devski"
+
+rm -rf ${BOXEN_NGINX_SITES}
+ln -s ${DEVSKI_ROOT}/nginx/sites-enabled ${BOXEN_NGINX_SITES}
+
+echo ""
+echo "VHosts linked"
+echo ""
+
+devski reload
