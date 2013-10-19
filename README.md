@@ -2,10 +2,10 @@
 
 ### В советской России мы используем Nginx в развитии
 
-Devski manages nginx vhosts on your development machine so you can dev in the 
-closest possible environment to production.
+Devski manages nginx vhosts on your development machine so you can develop in 
+the closest possible environment to production.
 
-Devski enables you dev with the following on your development machine:
+Devski enables you to do the following on your local:
 
 * .dev domain using boxen
 * https
@@ -36,7 +36,10 @@ uninstall
 
 ### Install
 
-Using boxen make sure you have dnsmasq and nginx running.
+You will need [boxen](http://boxen.github.com/) installed with dnsmasq and nginx 
+running.
+
+Then clone the devski repo to your home directory:
 
 ```shell
 git clone git@github.com:mynameisrufus/devski.git ~/.devski
@@ -58,12 +61,10 @@ rm -rf /opt/boxen/config/nginx/sites
 ln -s ~/.devski/nginx/sites-enabled /opt/boxen/config/nginx/sites
 ```
 
-Each time you run boxen you symlink will go missing so you will have to do this
-again.
+Each time you run boxen your symlink will go missing so currently you will have
+to re-run this command.
 
-### Debugging
-
-nginx:
+### Debugging Nginx
 
 ``` 
 tail -f /opt/boxen/log/nginx/*.log
