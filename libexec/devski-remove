@@ -14,5 +14,4 @@ SERVER_NAME=$1
 rm $DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf
 rm $DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf
 
-sudo launchctl stop devksi.mynameisrufus.nginx
-sudo launchctl start devksi.mynameisrufus.nginx
+devski reload

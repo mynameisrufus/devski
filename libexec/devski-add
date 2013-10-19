@@ -27,9 +27,11 @@ POSTCONF=`${POSTCONF_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${APP_PATH%/}`
 SERVER_CONF_FILE="$DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf"
 echo "$SERVER_CONF" > "$SERVER_CONF_FILE"
 
+devski enable $SERVER_NAME
+
 echo ""
-echo "To enable $SERVER_NAME run:"
-echo "  devski enable $SERVER_NAME"
+echo "$SERVER_NAME should be running at:"
+echo "  http://$SERVER_NAME.dev"
 echo ""
 
 echo "$POSTCONF"

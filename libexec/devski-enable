@@ -6,5 +6,4 @@ DEVSKI_ROOT="${HOME}/.devski"
 
 ln -s $DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf $DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf
 
-sudo launchctl stop dev.nginx
-sudo launchctl start dev.nginx
+devski reload
