@@ -11,6 +11,7 @@ DEVSKI_ROOT="${HOME}/.devski"
 
 SERVER_NAME=$1
 
+echo "$1 removed"
 rm $DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf
 rm $DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf
 

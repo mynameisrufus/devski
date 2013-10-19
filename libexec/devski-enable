@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
 
+if [ $# -lt 1 ]; then
+    echo "Not enough arguments supplied"
+    echo "See:"
+    echo "  devski help enable (or not)"
+    exit 1
+fi
+
 SERVER_NAME=$1
 
 DEVSKI_ROOT="${HOME}/.devski"
 
+echo "$1 enabled"
 ln -s $DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf $DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf
 
 devski reload

@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+if [ $# -lt 1 ]; then
+    echo "Not enough arguments supplied"
+    echo "See:"
+    echo "  devski help open (or not)"
+    exit 1
+fi
+
 SERVER_NAME=$1
 
 DEVSKI_ROOT="${HOME}/.devski"

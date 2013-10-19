@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+SERVER_NAME=$1
+
 DEVSKI_ROOT="${HOME}/.devski"
 
+echo "$1 disabled"
 rm $DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf
 
-sudo launchctl stop dev.nginx
-sudo launchctl start dev.nginx
+devski reload

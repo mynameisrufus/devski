@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 read -r -d '' POST_CONF <<EOF
+No instructions needed for a static site
 EOF
 
 echo "$POST_CONF"

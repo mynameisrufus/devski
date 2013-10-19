@@ -2,3 +2,4 @@
 
 sudo launchctl stop dev.nginx
 sudo launchctl start dev.nginx
+echo "nginx reloaded"

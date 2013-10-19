@@ -23,14 +23,12 @@ disable
 enable
 enabled
 help
-install
 link
 open
 reload
 remove
 templates
 test
-uninstall
 ❯
 ```
 
