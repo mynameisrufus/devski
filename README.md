@@ -34,13 +34,6 @@ uninstall
 ❯
 ```
 
-```shell
-puma -b unix://tmp/sockets/puma.sock -e production
-```
-
-What about foreman? Devski works great with foreman because Nginx just proxies
-to your server of choice.
-
 # Install
 
 Using boxen make sure you have dnsmasq and nginx running.
