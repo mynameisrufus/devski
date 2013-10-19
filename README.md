@@ -1,30 +1,38 @@
 # Devski
 
-Goal is to have something to that sets up `https://thing.whatever.dev`
+### В советской России мы используем Nginx в развитии
 
-__Current status: heavy development__
+Devski manages nginx vhosts on your development machine so you can dev in the 
+closest possible environment to production.
 
-# Why not Pow?
+Devski enables you dev with the following on your development machine:
 
-"Pow is a zero-config Rack server for Mac OS X.", so it's limited. That's fine,
-but how about development on a virtual machine? With Devski you would just proxy
-`thing.dev` to whatever your virtual machines webserver port is on, Pow can't do
-that.
+* .dev domain using pow
+* https
+* create a vhost with a single command
 
-Jetty, PHP, whatever.
+Current commands:
 
-SSL? done.
-
-Have you ever tried to kill POW after it randomly died? Good times.
-
-Pow is written in node.js, just saying.
-
-Devski uses Nginx and you probably want to use it in production, therefore it
-makes sense to dev on an environment as close as possible to your prod
-environment.
-
-What about debugging threaded code? With Devski you can run this and debug on
-your local!
+```shell
+❯ devski commands
+--version
+add
+available
+commands
+disable
+enable
+enabled
+help
+install
+link
+open
+reload
+remove
+templates
+test
+uninstall
+❯
+```
 
 ```shell
 puma -b unix://tmp/sockets/puma.sock -e production
@@ -36,8 +44,6 @@ to your server of choice.
 # Install
 
 Using boxen make sure you have dnsmasq and nginx running.
-
-Check out devski into ~/.devski
 
 ```shell
 git clone git@github.com:mynameisrufus/devski.git ~/.devski
@@ -69,8 +75,3 @@ nginx:
 ``` 
 tail -f /opt/boxen/log/nginx/*.log
 ```
-
-## Credits
-
-Thanks to `rbenv` for laying a good example of how to structure this and a bunch
-of code.
