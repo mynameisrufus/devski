@@ -7,7 +7,7 @@ closest possible environment to production.
 
 Devski enables you dev with the following on your development machine:
 
-* .dev domain using pow
+* .dev domain using boxen
 * https
 * create a vhost with a single command
 
