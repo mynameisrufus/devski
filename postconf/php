@@ -2,7 +2,7 @@
 
 read -r -d '' POST_CONF <<EOF
 In project root:
-  php -S 8000
+  php -S 127.0.0.1:8000
 EOF
 
 echo "$POST_CONF"
