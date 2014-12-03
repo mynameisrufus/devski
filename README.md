@@ -34,8 +34,8 @@ test
 
 ### Install
 
-You will need [boxen](http://boxen.github.com/) installed with dnsmasq and nginx 
-running.
+Follow the instructions here if you do not have dnsmasq and .dev domain already
+setup http://passingcuriosity.com/2013/dnsmasq-dev-osx/
 
 Then clone the devski repo to your home directory:
 
