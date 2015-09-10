@@ -37,11 +37,6 @@ test
 Follow the instructions here if you do not have dnsmasq and .dev domain already
 setup http://passingcuriosity.com/2013/dnsmasq-dev-osx/
 
-Then install nginx:
-
-```shell
-brew install nginx
-```
 
 Then clone the devski repo to your home directory:
 
@@ -57,19 +52,13 @@ echo 'export PATH="$HOME/.devski/bin:$PATH"' >> ~/.bash_profile
 
 Zsh note: Modify your `~/.zshenv` file instead of `~/.bash_profile`
 
-Symlink your sites dir to your devski enabled dir with `devski link` this is
-equivalent to:
-
+To configure:
 ```shell
-rm -rf /usr/local/etc/nginx/servers
-ln -s /Users/$USER/.devski/nginx/sites-enabled /usr/local/etc/nginx/servers
+devski install
 ```
-
-Each time you run boxen your symlink will go missing so currently you will have
-to re-run this command.
 
 ### Debugging Nginx
 
 ``` 
-tail -f /opt/boxen/log/nginx/*.log
+tail -f /usr/local/etc/nginx/logs/*.log
 ```

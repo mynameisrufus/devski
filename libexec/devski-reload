@@ -2,8 +2,8 @@
 
 if devski-test
 then
-  sudo launchctl stop homebrew.mxcl.nginx
-  sudo launchctl start homebrew.mxcl.nginx
+  sudo launchctl stop devski.nginx
+  sudo launchctl start devski.nginx
   echo "nginx reloaded"
 else
   exit 1;
