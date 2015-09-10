@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BOXEN_NGINX_SITES="/opt/boxen/config/nginx/sites"
+BOXEN_NGINX_SITES="/usr/loca/etc/nginx/servers"
 DEVSKI_ROOT="${HOME}/.devski"
 
 rm -rf ${BOXEN_NGINX_SITES}

@@ -6,7 +6,7 @@ case "$1" in
 Some useful devski commands are:
    commands      List all devski commands
    enable        Enable a vhost
-   link          Re-link vhosts with boxen nginx
+   link          Re-link vhosts with nginx
    disable       Disable a vhost
    remove        Remove a vhost configuration
    add           Add a new vhost configuration
