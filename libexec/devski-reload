@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
-sudo launchctl stop dev.nginx
-sudo launchctl start dev.nginx
-echo "nginx reloaded"
+if devski-test
+then
+  sudo launchctl stop dev.nginx
+  sudo launchctl start dev.nginx
+  echo "nginx reloaded"
+else
+  exit 1;
+fi
