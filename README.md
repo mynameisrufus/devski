@@ -37,6 +37,12 @@ test
 Follow the instructions here if you do not have dnsmasq and .dev domain already
 setup http://passingcuriosity.com/2013/dnsmasq-dev-osx/
 
+Then install nginx:
+
+```shell
+brew install nginx
+```
+
 Then clone the devski repo to your home directory:
 
 ```shell
@@ -55,8 +61,8 @@ Symlink your sites dir to your devski enabled dir with `devski link` this is
 equivalent to:
 
 ```shell
-rm -rf /opt/boxen/config/nginx/sites
-ln -s ~/.devski/nginx/sites-enabled /opt/boxen/config/nginx/sites
+rm -rf /usr/local/etc/nginx/servers
+ln -s /Users/$USER/.devski/nginx/sites-enabled /usr/local/etc/nginx/servers
 ```
 
 Each time you run boxen your symlink will go missing so currently you will have

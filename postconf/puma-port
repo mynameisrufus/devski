@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+SERVER_NAME=$1
+APP_PATH=$2
+
+read -r -d '' POST_CONF <<EOF
+In project root run:
+  bundle exec puma -p 8080
+
+To make changes to this vhost:
+  devski open $SERVER_NAME
+EOF
+
+echo "$POST_CONF"
