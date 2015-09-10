@@ -7,7 +7,7 @@ the closest possible environment to production.
 
 Devski enables you to do the following on your local:
 
-* .dev domain using boxen
+* .dev domain
 * https
 * create a vhost with a single command
 
