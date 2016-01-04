@@ -34,10 +34,6 @@ test
 
 ### Install
 
-Follow the instructions here if you do not have dnsmasq and .dev domain already
-setup http://passingcuriosity.com/2013/dnsmasq-dev-osx/
-
-
 Then clone the devski repo to your home directory:
 
 ```shell
@@ -62,3 +58,7 @@ devski install
 ``` 
 tail -f /usr/local/etc/nginx/logs/*.log
 ```
+
+### Resources
+
+* http://passingcuriosity.com/2013/dnsmasq-dev-osx/
