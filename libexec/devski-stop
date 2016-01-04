@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo launchctl stop devski.nginx
+echo "nginx stoped"

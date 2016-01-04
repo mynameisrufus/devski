@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
-brew install nginx dnsmasq
+brew install nginx
+brew install dnsmasq
 
 sudo cp -fv ~/.devski/conf/devski.nginx.plist /Library/LaunchDaemons
 sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
 sudo cp -fv ~/.devski/conf/dnsmasq.conf /usr/local/etc/dnsmasq.conf
 sudo cp -fv ~/.devski/conf/nginx.conf /usr/local/etc/nginx/nginx.conf
+
+mkdir -p /usr/local/var/log/nginx
 
 sudo mkdir -p /etc/resolver
 sudo tee /etc/resolver/dev >/dev/null <<EOF

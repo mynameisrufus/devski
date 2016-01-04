@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if devski-test
+then
+  sudo launchctl start devski.nginx
+  echo "nginx started"
+else
+  exit 1;
+fi
