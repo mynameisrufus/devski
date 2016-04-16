@@ -9,14 +9,20 @@ sudo cp -fv ~/.devski/conf/dnsmasq.conf /usr/local/etc/dnsmasq.conf
 sudo cp -fv ~/.devski/conf/nginx.conf /usr/local/etc/nginx/nginx.conf
 
 mkdir -p /usr/local/var/log/nginx
+touch /usr/local/var/log/nginx/error.log
+touch /usr/local/var/log/nginx/access.log
 
 sudo mkdir -p /etc/resolver
 sudo tee /etc/resolver/dev >/dev/null <<EOF
 nameserver 127.0.0.1
 EOF
 
-sudo launchctl load /Library/LaunchDaemons/devski.nginx.plist
-sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+sudo launchctl unload /Library/LaunchDaemons/devski.nginx.plist
+sudo launchctl load -w /Library/LaunchDaemons/devski.nginx.plist
+
+sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+
 sudo launchctl start homebrew.mxcl.dnsmasq
 
 devski link

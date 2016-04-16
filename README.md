@@ -56,7 +56,13 @@ devski install
 ### Debugging Nginx
 
 ``` 
-tail -f /usr/local/etc/nginx/logs/*.log
+tail -f /usr/local/var/log/nginx/*.log
+```
+
+### Debugging launchctl
+
+```
+tail -f /var/log/nginx.log
 ```
 
 ### Resources

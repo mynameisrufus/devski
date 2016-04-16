@@ -2,8 +2,7 @@
 
 if devski-test
 then
-  sudo launchctl stop devski.nginx
-  sudo launchctl start devski.nginx
+  sudo /usr/local/bin/nginx -s reload
   echo "nginx reloaded"
 else
   exit 1;

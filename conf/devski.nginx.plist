@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
 <plist version="1.0">
   <dict>
     <key>Label</key>
     <string>devski.nginx</string>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>KeepAlive</key>
-    <true />
+
     <key>ProgramArguments</key>
     <array>
         <string>/usr/local/opt/nginx/bin/nginx</string>
         <string>-c</string>
         <string>/usr/local/etc/nginx/nginx.conf</string>
+        <string>-g</string>
+        <string>daemon off;</string>
     </array>
+
+    <key>NetworkState</key>
+    <true/>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true />
+
     <key>WorkingDirectory</key>
-    <string>/usr/local</string>
+    <string>/tmp</string>
 
     <key>StandardErrorPath</key>
-    <string>/usr/local/etc/nginx/logs/console.log</string>
+    <string>/var/log/nginx.log</string>
  
     <key>StandardOutPath</key>
-    <string>/usr/loca/etc/nginx/logs/console.log</string>
+    <string>/var/log/nginx.log</string>
   </dict>
 </plist>
