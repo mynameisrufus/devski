@@ -19,3 +19,4 @@ tmp
 nginx/sites-available/*.conf
 nginx/sites-enabled/*.conf
 nginx/user.conf
+varnish
