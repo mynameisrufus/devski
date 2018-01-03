@@ -11,8 +11,16 @@ DEVSKI_ROOT="${HOME}/.devski"
 
 SERVER_NAME=$1
 
-echo "$1 removed"
-rm $DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf
-rm $DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf
+rm "$DEVSKI_ROOT/nginx/sites-enabled/$SERVER_NAME.conf"
+rm "$DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf"
+
+rm "$DEVSKI_ROOT/nginx/certs/$SERVER_NAME.crt"
+rm "$DEVSKI_ROOT/nginx/certs/$SERVER_NAME.key"
+
+sudo security delete-certificate \
+ -c "$SERVER_NAME.dev" \
+ "/Library/Keychains/System.keychain"
 
 devski reload
+
+echo "$1 removed"

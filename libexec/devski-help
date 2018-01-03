@@ -30,7 +30,7 @@ disable) echo "usage: devski disable <name>
 
 Removes the symlink from \`sites-enabled' and restarts nginx."
 ;;
-add) echo "usage: devski add <name> <template> [<path>]
+add) echo "usage: devski add [-p <port>] [-r <root>] <name> <template>
 
 Creates a new disabled vhost configuration using the current directory unless
 \`path' has been specified."

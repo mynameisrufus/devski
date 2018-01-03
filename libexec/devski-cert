@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+DEVSKI_ROOT="${HOME}/.devski"
+CERTS_PATH="${DEVSKI_ROOT}/nginx/certs"
+SERVER_NAME=$1
+
+cd $CERTS_PATH
+
+openssl genrsa -des3 -passout pass:x -out "$SERVER_NAME.pass.key" 2048
+
+openssl rsa -passin pass:x -in "$SERVER_NAME.pass.key" -out "$SERVER_NAME.key"
+
+rm "$SERVER_NAME.pass.key"
+
+ALT_NAME="[SAN]\nsubjectAltName=DNS:$SERVER_NAME.dev"
+
+openssl req \
+    -key "$SERVER_NAME.key" \
+    -x509 \
+    -nodes \
+    -new \
+    -out "$SERVER_NAME.crt" \
+    -subj "/C=RU/ST=Kamchatka/L=Petropavlovsk-Kamchatsky/O=Devski/OU=Certificates/CN=$SERVER_NAME.dev/emailAddress=$SERVER_NAME@devski.ru" \
+    -reqexts SAN \
+    -extensions SAN \
+    -config <(cat /System/Library/OpenSSL/openssl.cnf \
+        <(printf $ALT_NAME)) \
+    -sha256 \
+    -days 3650

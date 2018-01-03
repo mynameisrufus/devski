@@ -11,8 +11,8 @@ read -r -d '' SERVER_CONF <<EOF
 server {
   listen 80;
   listen 443 ssl;
-  ssl_certificate     $DEVSKI_ROOT/nginx/certs/dev.crt;
-  ssl_certificate_key $DEVSKI_ROOT/nginx/certs/dev.key;
+  ssl_certificate     $DEVSKI_ROOT/nginx/certs/$SERVER_NAME.crt;
+  ssl_certificate_key $DEVSKI_ROOT/nginx/certs/$SERVER_NAME.key;
   server_name *.$SERVER_NAME.dev $SERVER_NAME.dev;
   root   $APP_PATH;
   autoindex on;

@@ -13,19 +13,41 @@ GREP="/bin/grep"
 DEVSKI_ROOT="${HOME}/.devski"
 TEMPLATE_PATH="${DEVSKI_ROOT}/vhosts"
 POSTCONF_PATH="${DEVSKI_ROOT}/postconf"
+CERTS_PATH="${DEVSKI_ROOT}/nginx/certs"
 
 CURRENT=`pwd`
 BASENAME=`basename $CURRENT`
-TEMPLATE_NAME=$2
-SERVER_NAME=$1
+APP_PATH=$CURRENT
+SERVER_PORT="8181"
 
-if [ $3 ]; then APP_PATH=$3; else APP_PATH=$CURRENT; fi
+while getopts ":p:d:" opt; do
+  case $opt in
+    p)
+      SERVER_PORT=${OPTARG}
+      ;;
+    d)
+      APP_PATH=${OPTARG}
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
 
-SERVER_CONF=`${TEMPLATE_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${APP_PATH%/}`
-POSTCONF=`${POSTCONF_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${APP_PATH%/}`
+SERVER_NAME=${@:$OPTIND:1}
+TEMPLATE_NAME=${@:$OPTIND+1:1}
+
+SERVER_CONF=`${TEMPLATE_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${SERVER_PORT} ${APP_PATH%/}`
+POSTCONF=`${POSTCONF_PATH}/${TEMPLATE_NAME} ${SERVER_NAME} ${SERVER_PORT} ${APP_PATH%/}`
 
 SERVER_CONF_FILE="$DEVSKI_ROOT/nginx/sites-available/$SERVER_NAME.conf"
 echo "$SERVER_CONF" > "$SERVER_CONF_FILE"
+
+devski cert $SERVER_NAME
+
+sudo security add-trusted-cert \
+  -d -r trustRoot -k \
+  "/Library/Keychains/System.keychain" "$CERTS_PATH/$SERVER_NAME.crt"
 
 devski enable $SERVER_NAME
 

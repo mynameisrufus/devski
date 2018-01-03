@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 SERVER_NAME=$1
-APP_PATH=$2
+SERVER_PORT=${2:="8080"}
+APP_PATH=$3
 
 DEVSKI_ROOT="${HOME}/.devski"
 
@@ -11,8 +12,8 @@ read -r -d '' SERVER_CONF <<EOF
 server {
   listen 80;
   listen 443 ssl;
-  ssl_certificate     $DEVSKI_ROOT/nginx/certs/dev.crt;
-  ssl_certificate_key $DEVSKI_ROOT/nginx/certs/dev.key;
+  ssl_certificate     $DEVSKI_ROOT/nginx/certs/$SERVER_NAME.crt;
+  ssl_certificate_key $DEVSKI_ROOT/nginx/certs/$SERVER_NAME.key;
   client_max_body_size 4G;
   server_name *.$SERVER_NAME.dev $SERVER_NAME.dev;
   keepalive_timeout 5;
@@ -23,7 +24,7 @@ server {
     proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
     proxy_set_header Host \$http_host;
     proxy_redirect off;
-    proxy_pass http://localhost:8080;
+    proxy_pass http://localhost:$SERVER_PORT;
   }
 
   error_page 500 502 503 504 /500.html;

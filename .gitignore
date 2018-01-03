@@ -19,4 +19,6 @@ tmp
 nginx/sites-available/*.conf
 nginx/sites-enabled/*.conf
 nginx/user.conf
+nginx/certs/*.crt
+nginx/certs/*.key
 varnish

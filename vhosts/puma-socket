@@ -15,8 +15,8 @@ upstream app_server_$SERVER_NAME {
 server {
   listen 80;
   listen 443 ssl;
-  ssl_certificate     $DEVSKI_ROOT/nginx/certs/dev.crt;
-  ssl_certificate_key $DEVSKI_ROOT/nginx/certs/dev.key;
+  ssl_certificate     $DEVSKI_ROOT/nginx/certs/$SERVER_NAME.crt;
+  ssl_certificate_key $DEVSKI_ROOT/nginx/certs/$SERVER_NAME.key;
   client_max_body_size 4G;
   server_name *.$SERVER_NAME.dev $SERVER_NAME.dev;
   keepalive_timeout 5;
